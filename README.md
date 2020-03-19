@@ -34,22 +34,22 @@ setcap 'cap_dac_read_search+ep' readfile
 ```
 Note: The capability, CAP_DAC_READ_SEARCH, bypass file read permission checks and directory read and execute permission checks;
 
-#6. check the file capabilities - the output shall include cap_dac_read_search=ep
+# 6. check the file capabilities - the output shall include cap_dac_read_search=ep
 ```c++code
 getcap readfile
 ```
-#7. run again with NON-ROOT user - both commands shall succeed
+# 7. run again with NON-ROOT user - both commands shall succeed
 ```c++code
 ./readfile /readall/all.txt
 ./readfile /restricted/r.txt
 ```
 
-#8. now cleanup - YOU MUST RUN AS ROOT USE
+# 8. now cleanup - YOU MUST RUN AS ROOT USE
 ```c++code
 ./cleanup.sh
 ```
 
-#CONCLUSION
-If the service is reading privileged directory/files, then the service can be
+# CONCLUSION
+**If the service is reading privileged directory/files, then the service can be
 still run as non-root with only cap_dac_read_search. This capability bypasses
-file read permission checks and directory read and execute permission checks.
+file read permission checks and directory read and execute permission checks.**
