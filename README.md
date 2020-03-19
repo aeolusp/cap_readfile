@@ -3,13 +3,17 @@ This is simple demonstration of Linux capability cap_dac_read_search. The progra
 
 
 # 1. compile
+```c++code
 g++ readfile.cpp -o readfile
+```
 
 # 2. setup - YOU MUST RUN WITH ROOT USER
+```c++code
 ./setup.sh
-Note: The script will setup the test environment. It creates below directory and files with shown permissions 
- drwxr-xr-x   root:root   /readall/all.txt
- drwxr-x---   root:root   /restricted/r.txt
+```
+...Note: The script will setup the test environment. It creates below directory and files with shown permissions...
+...` drwxr-xr-x   root:root   /readall/all.txt`...
+...` drwxr-x---   root:root   /restricted/r.txt`...
 
 # 3. check for capabilities - output shall be empty
 getcap readfile
