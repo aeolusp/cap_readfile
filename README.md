@@ -2,24 +2,23 @@
 This is simple demonstration of Linux capability cap_dac_read_search. The program reads the given file and prints the file content.
 
 
-#1. compile
+# 1. compile
 g++ readfile.cpp -o readfile
 
-#2. setup - run this script to create test environment
-# this includes creating two directories with below permissions
-# drwxr-xr-x   root:root   /readall/all.txt
-# drwxr-x---   root:root   /restricted/r.txt
-# NOTE: you need root privileges to run setup
+# 2. setup - YOU MUST RUN WITH ROOT USER
 ./setup.sh
+Note: The script will setup the test environment. It creates below directory and files with shown permissions 
+ drwxr-xr-x   root:root   /readall/all.txt
+ drwxr-x---   root:root   /restricted/r.txt
 
-#3. check for capabilities - output shall be empty
+# 3. check for capabilities - output shall be empty
 getcap readfile
 
-#4. Run without any capabilities NOTE: YOU MUST RUN AS NON-ROOT USER
+# 4. Run without any capabilities - YOU MUST RUN AS NON-ROOT USER
 ./readfile /readall/all.txt 	- shall show contents of hello.txt
 ./readfile /restricted/r.txt 	- fails with permission denied error
 
-#5. set file capabilities for readfile - YOU NEED TO RUN THIS AS ROOT USER
+# 5. set file capabilities for readfile - YOU NEED TO RUN THIS AS ROOT USER
 #The capability, CAP_DAC_READ_SEARCH, bypass file read permission checks 
 # and directory read and execute permission checks;
 setcap 'cap_dac_read_search+ep' readfile
